@@ -1,54 +1,48 @@
-==============================================================================
-Joint Drug Interaction Information Extraction 
-with Attention-Gated Graph Convolutions
+# Joint Drug Interaction Information Extraction with Attention-Gated Graph Convolutions
 
-Code Author: Tung Tran (tung.tran@uky.edu)
+This model is used in extracting drug information, including drug entities, drug interactions, and outcome interaction, from unstructured SPL drug labels.
 
-==============================================================================
+For more information on the original shared task, please see:
 
-Requirements:
--- tensorflow version 1.12
--- sklearn
--- gensim
--- nltk
--- pandas
--- scipy
+https://bionlp.nlm.nih.gov/tac2018druginteractions/
 
-==============================================================================
+## Requirements
+
+~~~
+tensorflow version 1.12
+sklearn
+gensim
+nltk
+pandas
+scipy
+~~~
+
+# Running Experiments
 
 To run the experiments, first download pretrain embeddings from: 
 http://evexdb.org/pmresources/vec-space-models/
 
-You can use PMC-w2v.bin, or --no-embeddings to use randomly initialized 
-embeddings instead.
+You can include **PMC-w2v.bin** in the working directory, or use the **--no-embeddings** flag to randomly initialized embeddings instead.
 
-The program runs in either (1) testing and annotation mode or (2) n-fold cross 
-validation mode. Use (1) to generate final results on the test sets and (2) to 
-obtain validation results without touching the test sets. By default, it will 
-run in mode (1) unless you specify --xval-dir to indicate a directory to send 
-cross-validation results. Use --annotate with mode (1) to print out results to 
-a directory. The --strategy argument can be set to `A` to just train on TAC22 
-(default), `B` to train on TAC22 and NLM180, and `C` to train on TAC22, 
-NLM180, and DDI2013. Run --help for a full list of program parameters.
+The program runs in either (1) testing and annotation mode or (2) n-fold cross validation mode. Use (1) to generate final results on the test sets and (2) to 
+obtain validation results without touching the test sets. By default, it will run in mode (1) unless you specify **--xval-dir** to indicate a directory to send 
+cross-validation results. Use **--annotate** with mode (1) to print out results to a directory. The **--strategy** argument can be set to `A` to just train on TAC22 (default), `B` to train on TAC22 and NLM180, and `C` to train on TAC22, NLM180, and DDI2013. Run **--help** for a full list of program parameters.
 
-The *dataset* directory contains all relevant dataset files in both XML and a 
-simpler custom text-based format. The scripts `xml_convert.py` and 
-`xml_revert.py` in the *dataset* folder can be used to convert back and forth 
-between TAC DDI XML format and our unified text format. We only provide data in our unified format. For the original XML source, please see the original task page:
+The **dataset** directory contains all relevant dataset files in both XML and a simpler custom text-based format. The scripts `xml_convert.py` and `xml_revert.py` in the **dataset** folder can be used to convert back and forth between TAC DDI XML format and our unified text format. We only provide data in our custom unified format. For the original XML source, please see the original task page:
+
 https://bionlp.nlm.nih.gov/tac2018druginteractions/
 
-==============================================================================
-
-Other important files:
+## Other important files
 
 * tacEval_relaxed.py --- official script used for test set evaluation
 * run_eval.gcn.sh --- example bash file to perform an end-to-end run of an experiment
 * bootstrap.py --- used to perform voting-based ensembling
 
-==============================================================================
+## Running the program
 
 The full program settings are as follows:
 
+```
 usage: main.py [-h] [--annotate] [--xval-dir XVAL_DIR]
                [--heldout-count HELDOUT_COUNT] [--strategy STRATEGY] [--coord]
                [--annotation-prefix ANNOTATION_PREFIX] [--no-embeddings]
@@ -99,3 +93,16 @@ optional arguments:
   --load-checkpoint LOAD_CHECKPOINT
                         load the following checkpoint instead of training from
                         scratch
+ ```                       
+ 
+# Acknowledgements
+
+Please consider citing the following paper if you use this software in your work:
+
+> TBA
+
+# Author
+
+> Tung Tran  
+> tung.tran **[at]** uky.edu  
+> <http://tttran.net/>
