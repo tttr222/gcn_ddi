@@ -1,6 +1,6 @@
-# Joint Drug Interaction Information Extraction with Attention-Gated Graph Convolutions
+# Extracting Drug Interaction Information from Drug Labels
 
-This model is used in extracting drug information, including drug entities, drug interactions, and outcome interaction, from unstructured SPL drug labels.
+This repository houses a model is used in extracting drug information, including drug entities, drug interactions, and outcome interaction, from unstructured SPL drug labels as shown in the paper, "Attention-Gated Graph Convolutions for Extracting Drug Interaction Information From Drug Labels."
 
 For more information on the original shared task, please see:
 
